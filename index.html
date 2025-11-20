@@ -2,14 +2,14 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>ACADEXA | Servicios Académicos 100% Online - Tareas, Reportes y Ensayos</title>
+  <title>ACADEXA — Apoyo académico 100% online</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#315eff" />
   
   <!-- Meta tags SEO -->
   <meta
     name="description"
-    content="Apoyo académico 100% online: tareas, reportes, ensayos, diapositivas, programación y más. Soluciones rápidas, confiables y personalizadas. Respuesta en menos de 1 hora."
+    content="Acadexa ofrece tutorías y apoyo académico 100% online: tareas, ensayos, programación y presentaciones. Atención personalizada y respuesta rápida. Reserva tu clase hoy."
   />
   <meta name="keywords" content="tareas, reportes, ensayos, programación, servicios académicos, apoyo escolar, online" />
   <meta name="author" content="ACADEXA" />
@@ -17,23 +17,99 @@
   
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="ACADEXA | Servicios Académicos 100% Online" />
-  <meta property="og:description" content="Apoyo académico personalizado: tareas, reportes, ensayos, diapositivas y programación." />
+  <meta property="og:title" content="ACADEXA — Tutorías y apoyo académico online" />
+  <meta property="og:description" content="Tutorías y soluciones académicas 100% online: tareas, ensayos, programación y presentaciones. Atención personalizada." />
   <meta property="og:url" content="https://acadexa.com/" />
   <meta property="og:image" content="https://acadexa.com/logo%20acadexa.png" />
   <meta property="og:site_name" content="ACADEXA" />
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ACADEXA | Servicios Académicos 100% Online" />
-  <meta name="twitter:description" content="Apoyo académico personalizado: tareas, reportes, ensayos, diapositivas y programación." />
+  <meta name="twitter:title" content="ACADEXA — Tutorías y apoyo académico online" />
+  <meta name="twitter:description" content="Tutorías y apoyo académico 100% online: tareas, ensayos, programación y presentaciones. Reserva tu primera clase." />
   <meta name="twitter:image" content="https://acadexa.com/logo%20acadexa.png" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://acadexa.com/" />
+
+  <!-- JSON-LD: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ACADEXA",
+    "url": "https://acadexa.online/",
+    "logo": "https://acadexa.online/logo%20acadexa.png",
+    "sameAs": [
+      "https://www.facebook.com/tu-perfil",
+      "https://www.instagram.com/tu-perfil"
+    ],
+    "contactPoint": [{
+      "@type": "ContactPoint",
+      "telephone": "+52-196-111-9491",
+      "contactType": "customer service",
+      "areaServed": "MX",
+      "availableLanguage": ["Spanish"]
+    }]
+  }
+  </script>
+
+  <!-- JSON-LD: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Qué tipos de tutorías ofrecen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ofrecemos tutorías individuales y apoyo en tareas en materias como matemáticas, inglés, programación, redacción de ensayos y presentaciones."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cómo reservo una clase?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Puedes reservar enviando un mensaje por WhatsApp a +52 1 961 119 4991 o usando el formulario de contacto en la web."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuál es el tiempo de respuesta?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El tiempo de respuesta suele ser inferior a 1 hora en días laborables, dependiendo de la carga de trabajo y la complejidad del encargo."
+        }
+      }
+    ]
+  }
+  </script>
+
 
   <!-- Fuente Google -->
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     rel="stylesheet"
   />
+
+  <!-- Tailwind via CDN (rapida integración para estilos responsivos) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#315eff',
+            'primary-dark': '#1f3cc4',
+            accent: '#ffe94d'
+          }
+        }
+      }
+    }
+  </script>
 
   <!-- Estilos -->
   <link rel="stylesheet" href="styles.css" />
@@ -42,7 +118,7 @@
   <div class="page">
     <!-- HEADER -->
     <header>
-      <a href="#inicio" class="logo" aria-label="ACADEXA - Inicio">
+      <a href="#inicio" class="logo flex items-center gap-3" aria-label="ACADEXA - Inicio">
         <div class="logo-mark">A</div>
         <div>
           <div class="logo-text-main">ACADEXA</div>
@@ -50,10 +126,15 @@
         </div>
       </a>
 
-      <nav>
-        <a href="#servicios">Servicios</a>
-        <a href="#beneficios">¿Por qué nosotros?</a>
-        <a href="#contacto">Contacto</a>
+      <button id="mobileMenuBtn" class="mobile-menu-btn p-2 rounded-md md:hidden text-2xl" aria-controls="main-nav" aria-expanded="false" aria-label="Abrir menú">
+        <span class="mobile-menu-icon">☰</span>
+      </button>
+
+      <nav id="main-nav" class="hidden md:flex md:gap-6 lg:gap-8">
+        <button id="mobileMenuClose" class="mobile-close md:hidden text-xl self-end" aria-label="Cerrar menú">✕</button>
+        <a href="#servicios" class="text-sm text-gray-600 hover:text-primary">Servicios</a>
+        <a href="#beneficios" class="text-sm text-gray-600 hover:text-primary">¿Por qué nosotros?</a>
+        <a href="#contacto" class="text-sm text-gray-600 hover:text-primary">Contacto</a>
       </nav>
 
       <div class="header-cta">
@@ -71,19 +152,19 @@
 
     <!-- HERO -->
     <section class="hero" id="inicio">
-      <div>
-        <div class="hero-kicker">Apoyo académico personalizado</div>
-        <h1 class="hero-title">
-          Soluciones <span>rápidas y confiables</span> para tus tareas.
+      <div class="space-y-3 md:space-y-4">
+        <div class="hero-kicker text-primary-dark font-semibold text-xs tracking-wider uppercase">Apoyo académico personalizado</div>
+        <h1 class="hero-title text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
+          Soluciones <span class="text-primary">rápidas y confiables</span> para tus tareas.
         </h1>
-        <p class="hero-subtitle">
+        <p class="hero-subtitle text-base md:text-lg text-gray-600 max-w-full md:max-w-lg">
           Te ayudo con tareas, redacción de reportes, elaboración de ensayos,
           diapositivas, programación y mucho más. Todo 100% online, fácil y
           seguro.
         </p>
 
-        <div class="hero-list-title">¿En qué puedo ayudarte?</div>
-        <ul class="hero-list">
+        <div class="hero-list-title text-sm font-semibold uppercase text-gray-500">¿En qué puedo ayudarte?</div>
+        <ul class="hero-list grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4 text-base">
           <li><span>✓</span>Tareas de inglés</li>
           <li><span>✓</span>Tareas de matemáticas</li>
           <li><span>✓</span>Redacción de reportes</li>
@@ -92,19 +173,19 @@
           <li><span>✓</span>Actividades de programación</li>
         </ul>
 
-        <div class="hero-cta-row">
+        <div class="hero-cta-row flex flex-col sm:flex-row sm:items-center sm:gap-3 gap-3">
           <a
             href="https://wa.me/5219611194991?text=Hola%2C%20me%20interesa%20informaci%C3%B3n%20sobre%20los%20servicios%20acad%C3%A9micos."
-            class="btn-primary"
+            class="btn-primary w-full sm:w-auto inline-flex items-center justify-center bg-gradient-to-r from-primary to-primary-dark text-white rounded-full py-3 px-6 shadow-lg text-sm font-semibold"
             target="_blank"
             rel="noopener"
           >
-            <span class="icon">📲</span>
+            <span class="icon mr-2">📲</span>
             Escríbeme por WhatsApp
           </a>
 
-        <a href="#contacto" class="btn-ghost">
-          <span>✉️</span> Enviar mensaje rápido
+        <a href="#contacto" class="btn-ghost w-full sm:w-auto inline-flex items-center justify-center border rounded-full py-3 px-5 text-sm">
+          <span class="mr-2">✉️</span> Enviar mensaje rápido
         </a>
       </div>
 
@@ -162,6 +243,30 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section id="faq" class="faq">
+    <div class="section-label">Preguntas frecuentes</div>
+    <h2 class="section-title">Preguntas frecuentes</h2>
+    <p class="section-description">Resolvemos las dudas más comunes sobre nuestros servicios y procesos.</p>
+
+    <div class="faq-list">
+      <details>
+        <summary><strong>¿Qué tipos de tutorías ofrecen?</strong></summary>
+        <p>Ofrecemos tutorías individuales y apoyo en tareas en materias como matemáticas, inglés, programación, redacción y presentaciones. Adaptamos la ayuda a tu nivel académico.</p>
+      </details>
+
+      <details>
+        <summary><strong>¿Cómo reservo una clase?</strong></summary>
+        <p>Puedes reservar enviando un mensaje por WhatsApp al número en la sección de contacto o completando el formulario. Te responderemos con disponibilidad y precio.</p>
+      </details>
+
+      <details>
+        <summary><strong>¿Cuál es el tiempo de respuesta?</strong></summary>
+        <p>Normalmente respondemos en menos de 1 hora en días laborales; si no, máximo en 24 horas según la demanda.</p>
+      </details>
+    </div>
+  </section>
+
   <!-- SERVICIOS -->
   <section id="servicios">
     <div class="section-label">Servicios</div>
@@ -170,9 +275,8 @@
       Pensados para ayudarte en diferentes áreas y niveles académicos. Tú
       solo explica qué necesitas y yo me encargo del resto.
     </p>
-
-    <div class="services-grid">
-      <article class="service-card">
+    <div class="services-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <article class="service-card p-4">
         <div class="service-icon">📘</div>
         <h3 class="service-title">Tareas de inglés</h3>
         <p>
@@ -182,7 +286,7 @@
         <p class="service-note">Nivel básico, intermedio o avanzado.</p>
       </article>
 
-      <article class="service-card">
+      <article class="service-card p-4">
         <div class="service-icon">🧮</div>
         <h3 class="service-title">Tareas de matemáticas</h3>
         <p>
@@ -192,7 +296,7 @@
         <p class="service-note">Álgebra, cálculo, estadística y más.</p>
       </article>
 
-      <article class="service-card">
+      <article class="service-card p-4">
         <div class="service-icon">📝</div>
         <h3 class="service-title">Reportes y ensayos</h3>
         <p>
@@ -202,7 +306,7 @@
         <p class="service-note">Ideal para tareas y proyectos escolares.</p>
       </article>
 
-      <article class="service-card">
+      <article class="service-card p-4">
         <div class="service-icon">📊</div>
         <h3 class="service-title">Presentaciones y diapositivas</h3>
         <p>
@@ -212,7 +316,7 @@
         <p class="service-note">Diseños limpios y fáciles de entender.</p>
       </article>
 
-      <article class="service-card">
+      <article class="service-card p-4">
         <div class="service-icon">💻</div>
         <h3 class="service-title">Actividades de programación</h3>
         <p>
@@ -222,7 +326,7 @@
         <p class="service-note">Consulta por el lenguaje que usas.</p>
       </article>
 
-      <article class="service-card">
+      <article class="service-card p-4">
         <div class="service-icon">📚</div>
         <h3 class="service-title">Libros y material digital</h3>
         <p>
@@ -313,7 +417,7 @@
           detalles y costo aproximado.
         </p>
 
-        <form id="contactForm" action="https://formspree.io/f/mjkjolrn" method="POST">
+        <form id="contactForm" action="https://formspree.io/f/mjkjolrn" method="POST" class="space-y-3">
           <div class="form-row-inline">
             <div>
               <label for="nombre">Nombre *</label>
@@ -323,6 +427,7 @@
                 name="nombre"
                 placeholder="Escribe tu nombre"
                 required
+                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-3 text-base"
               />
             </div>
             <div>
@@ -332,6 +437,7 @@
                 id="correo"
                 name="email"
                 placeholder="tucorreo@example.com"
+                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-3 text-base"
               />
             </div>
           </div>
@@ -345,6 +451,7 @@
                 name="whatsapp"
                 placeholder="+52 ..."
                 required
+                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-3 text-base"
               />
             </div>
             <div>
@@ -360,6 +467,7 @@
               name="detalle"
               placeholder="Ejemplo: Tarea de matemáticas de nivel preparatoria, tema: ecuaciones cuadráticas, 3 ejercicios y explicación..."
               required
+              class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-3 text-base min-h-[120px]"
             ></textarea>
           </div>
 

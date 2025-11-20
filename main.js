@@ -145,6 +145,42 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // 9. Mobile menu toggle
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mainNav = document.getElementById('main-nav');
+  if (mobileMenuBtn && mainNav) {
+    mobileMenuBtn.addEventListener('click', function () {
+      const expanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', String(!expanded));
+      if (!expanded) {
+        mainNav.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      } else {
+        mainNav.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Close button inside mobile nav
+    const mobileMenuClose = document.getElementById('mobileMenuClose');
+    if (mobileMenuClose) {
+      mobileMenuClose.addEventListener('click', () => {
+        mainNav.style.display = 'none';
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    }
+
+    // Close menu on link click
+    mainNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mainNav.style.display = 'none';
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
   // 8. Log de inicialización
   console.log("ACADEXA - Aplicación inicializada correctamente");
 });
