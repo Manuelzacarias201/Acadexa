@@ -26,6 +26,18 @@ document.addEventListener("DOMContentLoaded", () => {
   if (contactForm) {
     contactForm.addEventListener("submit", async function (e) {
       e.preventDefault();
+      
+      // Validar checkbox de términos y condiciones
+      const aceptaTerminos = document.getElementById("aceptaTerminos");
+      if (aceptaTerminos && !aceptaTerminos.checked) {
+        if (formStatus) {
+          formStatus.textContent = "Debes aceptar los Términos y Condiciones para continuar.";
+          formStatus.style.color = "#ef4444";
+        }
+        aceptaTerminos.focus();
+        return;
+      }
+      
       if (formStatus) {
         formStatus.textContent = "Enviando tu mensaje...";
         formStatus.style.color = "var(--primary)";

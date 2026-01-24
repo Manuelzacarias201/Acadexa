@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Términos y Condiciones — ACADEXA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#315eff" />
+  
+  <!-- Meta tags SEO -->
+  <meta
+    name="description"
+    content="Términos y condiciones de servicio y aviso de privacidad de ACADEXA. Consulta nuestras políticas de uso, cancelación y protección de datos."
+  />
+  
+  <!-- Fuente Google -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#315eff',
+            'primary-dark': '#1f3cc4',
+            accent: '#ffe94d'
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Estilos -->
+  <link rel="stylesheet" href="styles.css" />
+  
+  <style>
+    .terms-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+    .terms-section {
+      margin-bottom: 2.5rem;
+    }
+    .terms-section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid rgba(49, 94, 255, 0.2);
+    }
+    .terms-section h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .terms-section p,
+    .terms-section li {
+      line-height: 1.8;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+    .terms-section ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .terms-section li {
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    .terms-section li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--primary);
+      font-weight: bold;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      color: var(--primary);
+      font-weight: 500;
+    }
+    .back-link:hover {
+      color: var(--primary-dark);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="terms-content">
+      <a href="index.html" class="back-link">
+        ← Volver al inicio
+      </a>
+      
+      <h1 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text);">Términos y Condiciones de Servicio</h1>
+      <p style="color: var(--muted); margin-bottom: 2rem;">Última actualización: <span id="updateDate"></span></p>
+      
+      <!-- I. Términos y Condiciones -->
+      <div class="terms-section">
+        <h2>I. Términos y Condiciones de Servicio</h2>
+        <p>Este documento establece el contrato entre ACADEXA y el cliente/estudiante que contrata nuestros servicios.</p>
+        
+        <h3>1. Naturaleza del Servicio</h3>
+        <p>Acadexa ofrece servicios de consultoría, tutoría y apoyo académico. El cliente reconoce que el material entregado es una guía de estudio o referencia y que el uso final del material es responsabilidad exclusiva del estudiante ante su institución educativa.</p>
+        
+        <h3>2. De la Naturaleza del Servicio y el Uso de Tecnología</h3>
+        <p>En Acadexa optimizamos nuestros procesos utilizando herramientas de vanguardia, un programa autónomo de aprendizaje guiado como apoyo en la investigación, estructuración y generación de contenido. Sin embargo:</p>
+        <ul>
+          <li>Todo trabajo es supervisado, corregido y validado por humanos para asegurar calidad y coherencia.</li>
+          <li>El cliente acepta que el uso de estas herramientas es parte integral del proceso de elaboración moderno.</li>
+        </ul>
+        
+        <h3>3. Política de Reclamaciones y Ventana de Tiempo</h3>
+        <p>Para garantizar la agilidad del servicio:</p>
+        <ul>
+          <li>El cliente dispone de una ventana de 6 horas naturales a partir de la entrega del trabajo para solicitar correcciones menores o expresar alguna inconformidad.</li>
+          <li>Pasadas las 6 horas, se dará el servicio por aceptado y finalizado, no dando lugar a reclamaciones posteriores, devoluciones ni modificaciones gratuitas.</li>
+        </ul>
+        
+        <h3>4. Política de Cancelación y Devoluciones</h3>
+        <p>Entendemos que los planes pueden cambiar, pero nuestro trabajo implica tiempo y reserva de agenda:</p>
+        <ul>
+          <li>Si el cliente decide cancelar el servicio una vez realizado el pago y antes de la entrega, se realizará una devolución máxima del 35% del monto total.</li>
+          <li>El 65% restante se retiene en concepto de gastos operativos, gestión administrativa y compensación por el tiempo de trabajo ya iniciado o la oportunidad de servicio perdida.</li>
+          <li>Una vez entregado el trabajo, no hay devoluciones de dinero.</li>
+        </ul>
+      </div>
+      
+      <!-- II. Aviso de Privacidad -->
+      <div class="terms-section" id="privacidad">
+        <h2>II. Aviso de Privacidad</h2>
+        <p>Este aviso es vital para garantizar el manejo adecuado de datos personales conforme a la normativa aplicable.</p>
+        
+        <h3>Datos Recabados</h3>
+        <p>Nombre, número de WhatsApp, correo electrónico y materiales educativos proporcionados.</p>
+        
+        <h3>Finalidad</h3>
+        <p>Los datos se usarán exclusivamente para la prestación del servicio contratado y la comunicación directa con el cliente.</p>
+        
+        <h3>Confidencialidad</h3>
+        <p>Acadexa se compromete a no compartir, vender ni difundir la identidad del cliente ni los documentos proporcionados con terceras personas.</p>
+        
+        <h3>Derechos ARCO</h3>
+        <p>El usuario puede solicitar la eliminación de sus datos en cualquier momento vía WhatsApp.</p>
+      </div>
+      
+      <!-- Contacto -->
+      <div class="terms-section" style="background: rgba(49, 94, 255, 0.05); padding: 1.5rem; border-radius: 12px; margin-top: 3rem;">
+        <h3 style="margin-top: 0;">¿Tienes dudas sobre estos términos?</h3>
+        <p style="margin-bottom: 1rem;">Puedes contactarnos directamente:</p>
+        <p>
+          <strong>WhatsApp:</strong> 
+          <a href="https://wa.me/5219611194991" target="_blank" rel="noopener" style="color: var(--primary);">+52 1 961 119 4991</a>
+        </p>
+      </div>
+    </div>
+    
+    <!-- FOOTER -->
+    <footer style="margin-top: 3rem;">
+      <span>© <span id="year"></span> ACADEXA · Servicios Académicos 100% Online.</span>
+      <span>
+        <a href="index.html" style="color: var(--primary-dark); font-weight: 500;">Volver al inicio</a>
+      </span>
+    </footer>
+  </div>
+  
+  <!-- JS -->
+  <script src="main.js"></script>
+  <script>
+    // Actualizar fecha
+    document.getElementById('updateDate').textContent = new Date().toLocaleDateString('es-MX', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+  </script>
+</body>
+</html>
