@@ -111,6 +111,9 @@
     }
   </script>
 
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
   <!-- Estilos -->
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -118,7 +121,7 @@
   <!-- Panel de Accesibilidad -->
   <div id="a11y-panel" class="a11y-panel" role="region" aria-label="Opciones de accesibilidad">
     <button id="a11y-toggle" class="a11y-toggle" aria-label="Alternar panel de accesibilidad" aria-expanded="false">
-      ♿
+      <i class="fas fa-universal-access"></i>
     </button>
     
     <div class="a11y-menu hidden" id="a11y-menu">
@@ -132,7 +135,7 @@
         <div class="a11y-option">
           <label for="a11y-reader">
             <input type="checkbox" id="a11y-reader" />
-            <span>🔊 Lector de voz</span>
+            <span><i class="fas fa-volume-high"></i> Lector de voz</span>
           </label>
           <p class="a11y-description">Escucha el contenido de la página</p>
         </div>
@@ -141,7 +144,7 @@
         <div class="a11y-option">
           <label for="a11y-contrast">
             <input type="checkbox" id="a11y-contrast" />
-            <span>⚫ Contraste alto</span>
+            <span><i class="fas fa-adjust"></i> Contraste alto</span>
           </label>
           <p class="a11y-description">Colores más intensos para mejor legibilidad</p>
         </div>
@@ -170,7 +173,7 @@
         <div class="a11y-option">
           <label for="a11y-links">
             <input type="checkbox" id="a11y-links" />
-            <span>🔗 Resaltar enlaces</span>
+            <span><i class="fas fa-link"></i> Resaltar enlaces</span>
           </label>
           <p class="a11y-description">Subrayados y destacados adicionales</p>
         </div>
@@ -179,7 +182,7 @@
         <div class="a11y-option">
           <label for="a11y-reading-mode">
             <input type="checkbox" id="a11y-reading-mode" />
-            <span>📖 Modo lectura</span>
+            <span><i class="fas fa-book"></i> Modo lectura</span>
           </label>
           <p class="a11y-description">Fondo suave para reducir fatiga ocular</p>
         </div>
@@ -188,14 +191,14 @@
         <div class="a11y-option">
           <label for="a11y-animations">
             <input type="checkbox" id="a11y-animations" />
-            <span>⏸️ Pausar animaciones</span>
+            <span><i class="fas fa-pause"></i> Pausar animaciones</span>
           </label>
           <p class="a11y-description">Desactiva efectos visuales en movimiento</p>
         </div>
 
         <!-- Botón de reinicio -->
         <button id="a11y-reset" class="a11y-reset-btn">
-          ↺ Restablecer configuración
+          <i class="fas fa-redo"></i> Restablecer configuración
         </button>
       </div>
     </div>
