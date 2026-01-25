@@ -1,4 +1,278 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // ==================== FUNCIONALIDADES DE ACCESIBILIDAD ====================
+  const a11yToggle = document.getElementById("a11y-toggle");
+  const a11yMenu = document.getElementById("a11y-menu");
+  const a11yClose = document.getElementById("a11y-close");
+  const a11yReset = document.getElementById("a11y-reset");
+
+  // Variables de opciones
+  const readerCheckbox = document.getElementById("a11y-reader");
+  const contrastCheckbox = document.getElementById("a11y-contrast");
+  const fontSizeSlider = document.getElementById("a11y-font-size");
+  const lineHeightSelect = document.getElementById("a11y-line-height");
+  const linksCheckbox = document.getElementById("a11y-links");
+  const readingModeCheckbox = document.getElementById("a11y-reading-mode");
+  const animationsCheckbox = document.getElementById("a11y-animations");
+
+  // Cargar configuración guardada
+  function loadA11ySettings() {
+    const saved = localStorage.getItem("a11ySettings");
+    if (saved) {
+      const settings = JSON.parse(saved);
+      
+      if (settings.contrast) {
+        contrastCheckbox.checked = true;
+        document.documentElement.classList.add("a11y-high-contrast");
+      }
+      
+      if (settings.fontSize) {
+        fontSizeSlider.value = settings.fontSize;
+        applyFontSize(settings.fontSize);
+      }
+      
+      if (settings.lineHeight) {
+        lineHeightSelect.value = settings.lineHeight;
+        applyLineHeight(settings.lineHeight);
+      }
+      
+      if (settings.links) {
+        linksCheckbox.checked = true;
+        document.documentElement.classList.add("a11y-links");
+      }
+      
+      if (settings.readingMode) {
+        readingModeCheckbox.checked = true;
+        document.documentElement.classList.add("a11y-reading-mode");
+      }
+      
+      if (settings.noAnimations) {
+        animationsCheckbox.checked = true;
+        document.documentElement.classList.add("a11y-no-animations");
+      }
+    }
+  }
+
+  // Guardar configuración
+  function saveA11ySettings() {
+    const settings = {
+      contrast: contrastCheckbox.checked,
+      fontSize: fontSizeSlider.value,
+      lineHeight: lineHeightSelect.value,
+      links: linksCheckbox.checked,
+      readingMode: readingModeCheckbox.checked,
+      noAnimations: animationsCheckbox.checked
+    };
+    localStorage.setItem("a11ySettings", JSON.stringify(settings));
+  }
+
+  // Alternar panel
+  a11yToggle.addEventListener("click", () => {
+    const isHidden = a11yMenu.classList.contains("hidden");
+    if (isHidden) {
+      a11yMenu.classList.remove("hidden");
+      a11yToggle.setAttribute("aria-expanded", "true");
+    } else {
+      a11yMenu.classList.add("hidden");
+      a11yToggle.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  // Cerrar panel
+  a11yClose.addEventListener("click", () => {
+    a11yMenu.classList.add("hidden");
+    a11yToggle.setAttribute("aria-expanded", "false");
+  });
+
+  // Contraste alto
+  contrastCheckbox.addEventListener("change", () => {
+    if (contrastCheckbox.checked) {
+      document.documentElement.classList.add("a11y-high-contrast");
+    } else {
+      document.documentElement.classList.remove("a11y-high-contrast");
+    }
+    saveA11ySettings();
+  });
+
+  // Tamaño de fuente
+  function applyFontSize(size) {
+    document.documentElement.style.fontSize = size + "px";
+  }
+
+  fontSizeSlider.addEventListener("input", () => {
+    applyFontSize(fontSizeSlider.value);
+    saveA11ySettings();
+  });
+
+  // Espaciado de línea
+  function applyLineHeight(value) {
+    document.documentElement.style.lineHeight = value;
+  }
+
+  lineHeightSelect.addEventListener("change", () => {
+    applyLineHeight(lineHeightSelect.value);
+    saveA11ySettings();
+  });
+
+  // Resaltar enlaces
+  linksCheckbox.addEventListener("change", () => {
+    if (linksCheckbox.checked) {
+      document.documentElement.classList.add("a11y-links");
+    } else {
+      document.documentElement.classList.remove("a11y-links");
+    }
+    saveA11ySettings();
+  });
+
+  // Modo lectura
+  readingModeCheckbox.addEventListener("change", () => {
+    if (readingModeCheckbox.checked) {
+      document.documentElement.classList.add("a11y-reading-mode");
+    } else {
+      document.documentElement.classList.remove("a11y-reading-mode");
+    }
+    saveA11ySettings();
+  });
+
+  // Pausar animaciones
+  animationsCheckbox.addEventListener("change", () => {
+    if (animationsCheckbox.checked) {
+      document.documentElement.classList.add("a11y-no-animations");
+    } else {
+      document.documentElement.classList.remove("a11y-no-animations");
+    }
+    saveA11ySettings();
+  });
+
+  // Lector de voz - VERSIÓN MEJORADA
+  let isUserStopping = false;
+  
+  if (readerCheckbox) {
+    readerCheckbox.addEventListener("change", function() {
+      console.log("Reader checkbox cambió:", this.checked);
+      if (this.checked) {
+        isUserStopping = false;
+        speakPageContent();
+      } else {
+        isUserStopping = true;
+        stopSpeaking();
+      }
+    });
+  }
+
+  function speakPageContent() {
+    try {
+      // Cancelar cualquier síntesis anterior
+      window.speechSynthesis.cancel();
+      
+      // Esperar un poco antes de comenzar
+      setTimeout(() => {
+        const text = getPageText();
+        
+        if (!text || text.trim().length === 0) {
+          alert("No hay contenido para leer");
+          if (readerCheckbox) readerCheckbox.checked = false;
+          return;
+        }
+
+        console.log("Iniciando lectura de:", text.substring(0, 100) + "...");
+        
+        // Crear utterance
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = "es-ES";
+        utterance.rate = 0.9;
+        utterance.pitch = 1;
+        utterance.volume = 1;
+
+        utterance.onstart = function() {
+          console.log("Lectura iniciada");
+        };
+
+        utterance.onend = function() {
+          console.log("Lectura finalizada");
+          if (readerCheckbox && !isUserStopping) readerCheckbox.checked = false;
+        };
+
+        utterance.onerror = function(event) {
+          console.error("Error al leer:", event.error);
+          // Solo mostrar alerta si el usuario no detuvo deliberadamente
+          if (event.error !== "interrupted" && !isUserStopping) {
+            alert("Error al leer el contenido: " + event.error);
+          }
+          if (readerCheckbox) readerCheckbox.checked = false;
+        };
+
+        // Hablar
+        window.speechSynthesis.speak(utterance);
+      }, 100);
+      
+    } catch (error) {
+      console.error("Error en speakPageContent:", error);
+      alert("Error: " + error.message);
+      if (readerCheckbox) readerCheckbox.checked = false;
+    }
+  }
+
+  function stopSpeaking() {
+    window.speechSynthesis.cancel();
+    console.log("Lectura detenida");
+  }
+
+  function getPageText() {
+    try {
+      // Obtener el elemento principal
+      const pageElement = document.querySelector(".page");
+      let text = "";
+      
+      if (pageElement) {
+        // Si existe la clase page, usar eso
+        text = pageElement.innerText;
+      } else {
+        // Si no, usar todo el body
+        text = document.body.innerText;
+      }
+      
+      // Limpiar espacios en blanco excesivos
+      text = text.replace(/\s+/g, " ").trim();
+      
+      return text;
+    } catch (error) {
+      console.error("Error obteniendo texto:", error);
+      return "No se pudo obtener el contenido de la página";
+    }
+  }
+
+  // Restablecer configuración
+  a11yReset.addEventListener("click", () => {
+    // Reiniciar valores
+    contrastCheckbox.checked = false;
+    fontSizeSlider.value = 16;
+    lineHeightSelect.value = "1.5";
+    linksCheckbox.checked = false;
+    readingModeCheckbox.checked = false;
+    animationsCheckbox.checked = false;
+    readerCheckbox.checked = false;
+
+    // Remover clases
+    document.documentElement.classList.remove("a11y-high-contrast", "a11y-links", "a11y-reading-mode", "a11y-no-animations");
+    
+    // Remover estilos inline
+    document.documentElement.style.fontSize = "";
+    document.documentElement.style.lineHeight = "";
+
+    // Detener síntesis de voz si está activa
+    if (isSpeaking) {
+      stopTextToSpeech();
+    }
+
+    // Limpiar almacenamiento local
+    localStorage.removeItem("a11ySettings");
+  });
+
+  // Cargar configuración al iniciar
+  loadA11ySettings();
+
+  // ==================== RESTO DE FUNCIONALIDADES ====================
+  
   // 1. Actualizar año en footer
   const yearSpan = document.getElementById("year");
   if (yearSpan) {

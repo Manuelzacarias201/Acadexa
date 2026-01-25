@@ -115,6 +115,91 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Panel de Accesibilidad -->
+  <div id="a11y-panel" class="a11y-panel" role="region" aria-label="Opciones de accesibilidad">
+    <button id="a11y-toggle" class="a11y-toggle" aria-label="Alternar panel de accesibilidad" aria-expanded="false">
+      ♿
+    </button>
+    
+    <div class="a11y-menu hidden" id="a11y-menu">
+      <div class="a11y-header">
+        <h2>Accesibilidad</h2>
+        <button id="a11y-close" class="a11y-close" aria-label="Cerrar panel">✕</button>
+      </div>
+      
+      <div class="a11y-options">
+        <!-- Lector en voz alta -->
+        <div class="a11y-option">
+          <label for="a11y-reader">
+            <input type="checkbox" id="a11y-reader" />
+            <span>🔊 Lector de voz</span>
+          </label>
+          <p class="a11y-description">Escucha el contenido de la página</p>
+        </div>
+
+        <!-- Contraste alto -->
+        <div class="a11y-option">
+          <label for="a11y-contrast">
+            <input type="checkbox" id="a11y-contrast" />
+            <span>⚫ Contraste alto</span>
+          </label>
+          <p class="a11y-description">Colores más intensos para mejor legibilidad</p>
+        </div>
+
+        <!-- Tamaño de texto -->
+        <div class="a11y-option">
+          <label for="a11y-font-size">Tamaño de texto:</label>
+          <div class="a11y-slider-container">
+            <span class="a11y-label">A</span>
+            <input type="range" id="a11y-font-size" min="12" max="24" value="16" step="1" />
+            <span class="a11y-label" style="font-size: 1.2em;"><strong>A</strong></span>
+          </div>
+        </div>
+
+        <!-- Espaciado de línea -->
+        <div class="a11y-option">
+          <label for="a11y-line-height">Espaciado de línea:</label>
+          <select id="a11y-line-height" class="a11y-select">
+            <option value="1.5">Normal (1.5)</option>
+            <option value="2">Espaciado (2)</option>
+            <option value="2.5">Extra espaciado (2.5)</option>
+          </select>
+        </div>
+
+        <!-- Resaltar enlaces -->
+        <div class="a11y-option">
+          <label for="a11y-links">
+            <input type="checkbox" id="a11y-links" />
+            <span>🔗 Resaltar enlaces</span>
+          </label>
+          <p class="a11y-description">Subrayados y destacados adicionales</p>
+        </div>
+
+        <!-- Modo lectura -->
+        <div class="a11y-option">
+          <label for="a11y-reading-mode">
+            <input type="checkbox" id="a11y-reading-mode" />
+            <span>📖 Modo lectura</span>
+          </label>
+          <p class="a11y-description">Fondo suave para reducir fatiga ocular</p>
+        </div>
+
+        <!-- Pausar animaciones -->
+        <div class="a11y-option">
+          <label for="a11y-animations">
+            <input type="checkbox" id="a11y-animations" />
+            <span>⏸️ Pausar animaciones</span>
+          </label>
+          <p class="a11y-description">Desactiva efectos visuales en movimiento</p>
+        </div>
+
+        <!-- Botón de reinicio -->
+        <button id="a11y-reset" class="a11y-reset-btn">
+          ↺ Restablecer configuración
+        </button>
+      </div>
+    </div>
+  </div>
   <div class="page">
     <!-- HEADER -->
     <header>
